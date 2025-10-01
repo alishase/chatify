@@ -16,6 +16,12 @@ const messageSchema = new mongoose.Schema(
       type: String,
       trim: true,
       maxlength: 2000,
+      validate: {
+        validator: function () {
+          return this.text || this.image;
+        },
+        message: "Message must contain either text or image",
+      },
     },
     image: {
       type: String,
@@ -23,7 +29,6 @@ const messageSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
 const Message = mongoose.model("Message", messageSchema);
 
 export default Message;
