@@ -1,5 +1,12 @@
-import React from "react";
+import { useAuthStore } from "../store/useAuthStore.js";
 
 export default function ChatPage() {
-  return <div>ChatPage</div>;
+  const { logout } = useAuthStore();
+
+  return (
+    <div className="z-10">
+      ChatPage
+      <button onClick={logout}>Logout</button>
+    </div>
+  );
 }
