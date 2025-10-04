@@ -3,11 +3,17 @@ import { useChatStore } from "../store/useChatStore";
 import UsersLoadingSkeleton from "./UsersLoadingSkeleton.jsx";
 
 export default function ContactList() {
-  const { getAllContacts, allContacts, setSelectedUser, isUsersLoading } =
-    useChatStore();
+  const {
+    getAllContacts,
+    allContacts,
+    setSelectedUser,
+    isUsersLoading,
+    selectedUser,
+  } = useChatStore();
 
   useEffect(() => {
     getAllContacts();
+    console.log(allContacts);
   }, [getAllContacts]);
 
   if (isUsersLoading) return <UsersLoadingSkeleton />;
@@ -18,7 +24,9 @@ export default function ContactList() {
         <div
           key={contact._id}
           onClick={() => setSelectedUser(contact)}
-          className="bg-cyan-500/10 p-4 rounded-lg cursor-pointer hover:bg-cyan-500/20 transition-colors"
+          className={`bg-cyan-500/10 p-4 rounded-lg cursor-pointer hover:bg-cyan-500/20 transition-colors
+          ${contact._id === selectedUser._id ? "bg-cyan-500/20" : ""}
+          `}
         >
           <div className="flex items-center gap-3">
             <div className={`avatar online`}>
