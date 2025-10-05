@@ -28,7 +28,11 @@ export default function ContactList() {
           key={contact._id}
           onClick={() => setSelectedUser(contact)}
           className={`bg-cyan-500/10 p-4 rounded-lg cursor-pointer hover:bg-cyan-500/20 transition-colors
-          ${contact._id === selectedUser._id ? "bg-cyan-500/20" : ""}
+          ${
+            selectedUser && contact._id === selectedUser._id
+              ? "bg-cyan-500/20"
+              : ""
+          }
           `}
         >
           <div className="flex items-center gap-3">
