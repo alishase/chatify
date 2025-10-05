@@ -5,11 +5,12 @@ import { useChatStore } from "../store/useChatStore.js";
 
 const mouseClickSound = new Audio("/sounds/mouse-click.mp3");
 export default function ProfileHeader() {
-  const { logout, authUser, updateProfile } = useAuthStore();
+  const { logout, authUser, updateProfile, onlineUsers } = useAuthStore();
   const { isSoundEnabled, toggleSound } = useChatStore();
   const [selectedImg, setSelectedImg] = useState(null);
 
   const fileInputRef = useRef(null);
+  const isOnline = authUser?._id ? onlineUsers.includes(authUser._id) : false;
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -30,7 +31,7 @@ export default function ProfileHeader() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           {/* AVATAR */}
-          <div className="avatar online">
+          <div className={`avatar ${isOnline ? "online" : "offline"}`}>
             <button
               className="size-14 rounded-full overflow-hidden relative group"
               onClick={() => fileInputRef.current.click()}
@@ -57,7 +58,9 @@ export default function ProfileHeader() {
             <h3 className="text-slate-200 font-medium text-base max-w-[180px] truncate">
               {authUser.fullName}
             </h3>
-            <p className="text-slate-200 text-xs">Online</p>
+            <p className="text-slate-200 text-xs">
+              {isOnline ? "Online" : "Offline"}
+            </p>
           </div>
         </div>
         {/* BUTTONS */}
