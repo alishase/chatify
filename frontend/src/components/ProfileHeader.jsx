@@ -10,7 +10,7 @@ export default function ProfileHeader() {
   const [selectedImg, setSelectedImg] = useState(null);
 
   const fileInputRef = useRef(null);
-  const isOnline = onlineUsers.includes(authUser._id);
+  const isOnline = authUser?._id ? onlineUsers.includes(authUser._id) : false;
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];

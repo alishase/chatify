@@ -22,7 +22,7 @@ const userSocketMap = {}; // {userId : socketId}
 io.on("connection", (socket) => {
   console.log("User connected: ", socket.user.fullName);
 
-  const userId = socket.userId;
+  const userId = socket.user._id;
   userSocketMap[userId] = socket.id;
 
   //io.emit()

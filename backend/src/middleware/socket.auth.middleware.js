@@ -7,7 +7,10 @@ export const socketAuthMiddleware = async (socket, next) => {
     const token = socket.handshake.headers.cookie
       ?.split("; ")
       .find((row) => row.startsWith("jwt="))
-      ?.split("=")[1];
+      ?.split("=")[1]
+      ?.replace(/%([0-9A-F]{2})/g, (_, p1) =>
+        String.fromCharCode(parseInt(p1, 16))
+      );
 
     if (!token) {
       console.log("Socket connection rejected: No token provided");
@@ -17,10 +20,6 @@ export const socketAuthMiddleware = async (socket, next) => {
     //verify the token
 
     const decoded = jwt.verify(token, ENV.JWT_SECRET);
-    if (!decoded) {
-      console.log("Socket connection rejected: Invalid token");
-      return next(new Error("Unauthorized - invalid token"));
-    }
 
     //find user
     const user = await User.findById(decoded.userId).select("-password");
