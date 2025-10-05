@@ -11,7 +11,7 @@ export default function ChatPage() {
   const { activeTab, selectedUser } = useChatStore();
 
   return (
-    <div className="relative w-full max-w-6xl h-full min-h-[calc(100vh-2rem)]">
+    <div className="relative w-full max-w-6xl h-full min-h-[calc(100vh-2rem)] max-h-[100dvh]">
       <BorderAnimatedContainer>
         <div className="flex h-full w-full">
           <div
