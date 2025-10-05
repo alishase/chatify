@@ -1,6 +1,6 @@
 # Chatify App
 
-[![Live Demo](https://img.shields.io/badge/live_demo-visit-blue?logo=vercel)](https://chatify-n7umh.sevalla.app/)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen.svg)](https://chatify-n7umh.sevalla.app/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![React 19](https://img.shields.io/badge/react-19-61dafb?logo=react&logoColor=white)](https://react.dev/)
 
