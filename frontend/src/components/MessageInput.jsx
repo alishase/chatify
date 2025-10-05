@@ -41,7 +41,7 @@ export default function MessageInput() {
   };
 
   return (
-    <div className="p-4 border-t border-slate-700/50">
+    <div className="w-full p-2 border-t border-slate-700/50">
       {imagePreview && (
         <div className="max-w-3xl mx-auto mb-3 flex items-center">
           <div className="relative">
@@ -63,7 +63,7 @@ export default function MessageInput() {
 
       <form
         onSubmit={handleSendMessage}
-        className="max-w-3xl mx-auto flex space-x-4 "
+        className="max-w-3xl mx-auto flex space-x-2 "
       >
         <input
           type="text"
