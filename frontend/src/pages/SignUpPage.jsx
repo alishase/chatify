@@ -25,8 +25,8 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="w-full flex items-center justify-center p-4 bg-slate-900">
-      <div className="relative w-full max-w-6xl md:h-[650px] h-[550px]">
+    <div className="w-full flex items-center justify-center min-h-[calc(100vh-2rem)]">
+      <div className="relative w-full max-w-6xl h-full">
         <BorderAnimatedContainer>
           <div className="w-full flex flex-col md:flex-row">
             <div className="md:w-1/2 p-8 flex items-center justify-center md:border-r border-slate-600/30">
