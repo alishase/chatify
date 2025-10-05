@@ -16,44 +16,40 @@ export default function ContactList() {
 
   useEffect(() => {
     getAllContacts();
-    console.log(allContacts);
   }, [getAllContacts]);
 
   if (isUsersLoading) return <UsersLoadingSkeleton />;
 
   return (
     <>
-      {allContacts.map((contact) => (
-        <div
-          key={contact._id}
-          onClick={() => setSelectedUser(contact)}
-          className={`bg-cyan-500/10 p-4 rounded-lg cursor-pointer hover:bg-cyan-500/20 transition-colors
-          ${
-            selectedUser && contact._id === selectedUser._id
-              ? "bg-cyan-500/20"
-              : ""
-          }
-          `}
-        >
-          <div className="flex items-center gap-3">
-            <div
-              className={`avatar ${
-                onlineUsers.includes(contact._id) ? "online" : "offline"
-              }`}
-            >
-              <div className="size-12 rounded-full">
-                <img
-                  src={contact.profilePic || "/avatar.png"}
-                  alt={contact.fullName}
-                />
+      {allContacts.map((contact) => {
+        const isSelected = selectedUser?._id === contact._id;
+        const isOnline = onlineUsers.includes(contact._id);
+
+        return (
+          <div
+            key={contact._id}
+            onClick={() => setSelectedUser(contact)}
+            className={`bg-cyan-500/10 p-4 rounded-lg cursor-pointer hover:bg-cyan-500/20 transition-colors ${
+              isSelected ? "bg-cyan-500/20" : ""
+            }`}
+          >
+            <div className="flex items-center gap-3">
+              <div className={`avatar ${isOnline ? "online" : "offline"}`}>
+                <div className="size-12 rounded-full">
+                  <img
+                    src={contact.profilePic || "/avatar.png"}
+                    alt={contact.fullName}
+                  />
+                </div>
               </div>
+              <h4 className="text-slate-200 font-medium truncate">
+                {contact.fullName}
+              </h4>
             </div>
-            <h4 className="text-slate-200 font-medium truncate">
-              {contact.fullName}
-            </h4>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </>
   );
 }
