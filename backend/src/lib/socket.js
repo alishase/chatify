@@ -17,6 +17,10 @@ const io = new Server(server, {
 //apply auth middleware for all socket connections
 io.use(socketAuthMiddleware);
 
+export function getReceiverSocketId(userId) {
+  return userSocketMap[userId];
+}
+
 const userSocketMap = {}; // {userId : socketId}
 
 io.on("connection", (socket) => {
